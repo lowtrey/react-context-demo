@@ -9,12 +9,14 @@ import Switch from '@material-ui/core/Switch';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/NavbarStyles';
 import { ThemeContext } from './contexts/ThemeContext';
+import { withLanguageContext } from './contexts/LanguageContext';
 
 class Navbar extends React.Component {
   static contextType = ThemeContext;
   render() {
     const { isDarkMode, toggleTheme } = this.context;
     const { classes } = this.props
+    const { language } = this.props.languageContext;
     return (
       <div className={classes.root}>
         <AppBar position='static' color={isDarkMode ? 'default' : 'primary'}>
@@ -46,4 +48,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default withStyles(styles)(Navbar);
+export default withLanguageContext(withStyles(styles)(Navbar));

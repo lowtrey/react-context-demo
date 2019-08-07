@@ -10,7 +10,8 @@ export class LanguageProvider extends React.Component {
   };
   changeLanguage(e) {
     this.setState({ language: e.target.value });
-  }
+  };
+
   render() {
     return (
       <LanguageContext.Provider value={{ ...this.state, changeLanguage: this.changeLanguage }}>
@@ -19,3 +20,9 @@ export class LanguageProvider extends React.Component {
     );
   }
 }
+
+export const withLanguageContext = Component => props => (
+  <LanguageContext.Consumer>
+    {value => <Component languageContext={value} {...props} />}
+  </LanguageContext.Consumer>
+);
